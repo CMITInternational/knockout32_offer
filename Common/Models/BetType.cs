@@ -1,8 +1,14 @@
+using System.ComponentModel;
+
 namespace Common.Models
 {
     public enum BetType
     {
+        [Description("Unknown")]
+        Unknown,
+        [Description("Sports")]
         Sports,
-        Makeup
+        [Description("Racing")]
+        Racing
     }
 }

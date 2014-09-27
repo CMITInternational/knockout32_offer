@@ -1,6 +1,7 @@
+using Api.Models;
 using Common.Models;
 
-namespace Api.Models
+namespace Api.Builders
 {
     public interface IOfferViewModelBuilder
     {

@@ -102,11 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Builders\IOfferViewModelBuilder.cs" />
+    <Compile Include="Builders\OfferViewModelBuilder.cs" />
     <Compile Include="Controllers\OffersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\IOfferViewModelBuilder.cs" />
     <Compile Include="Models\OfferViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

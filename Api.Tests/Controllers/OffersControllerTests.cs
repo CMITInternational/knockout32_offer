@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
+using Api.Builders;
 using Api.Controllers;
 using Api.Models;
 using Common.Models;
@@ -38,7 +39,7 @@ namespace Api.Tests.Controllers
             var offers = new List<Offer>
             {
                 new Offer(accountNumber: accountNumber, campaign: new Campaign(title: "offer one", quantifier: BetQuantifierType.Winning, betTrigger: new BetTrigger(type: BetType.Sports, amount: 20.00))),
-                new Offer(accountNumber: accountNumber, campaign: new Campaign(title: "offer two", quantifier: BetQuantifierType.Makeup, betTrigger: new BetTrigger(type: BetType.Makeup, amount: 10.00))),
+                new Offer(accountNumber: accountNumber, campaign: new Campaign(title: "offer two", quantifier: BetQuantifierType.Makeup, betTrigger: new BetTrigger(type: BetType.Racing, amount: 10.00))),
             };
             var offerOneProps = new Dictionary<string,string>
             {
@@ -65,7 +66,7 @@ namespace Api.Tests.Controllers
             //Assert
             Assert.That(offerViewModels.Count, Is.EqualTo(2));
             Assert.That(offerViewModels, ContainsOfferViewModelMatching(title: "offer one", properties: offerOneProps));
-            Assert.That(offerViewModels, ContainsOfferViewModelMatching(title: "offer one", properties: offerTwoProps));
+            Assert.That(offerViewModels, ContainsOfferViewModelMatching(title: "offer two", properties: offerTwoProps));
         }
 
         private Expression<Predicate<Offer>> OfferMatching(string title)
@@ -73,10 +74,10 @@ namespace Api.Tests.Controllers
             return o => o.Campaign.Title.Equals(title);
         }
 
-        private PredicateConstraint<OfferViewModel> ContainsOfferViewModelMatching(string title, Dictionary<string, string> properties)
+        private PredicateConstraint<List<OfferViewModel>> ContainsOfferViewModelMatching(string title, Dictionary<string, string> properties)
         {
-            return new PredicateConstraint<OfferViewModel>(o => o.Title.Equals(title) && o.Properties.Keys.All(key =>   properties.ContainsKey(key) && 
-                                                                                                                        properties[key].Equals(o.Properties[key])));
+            return new PredicateConstraint<List<OfferViewModel>>(l => l.Any(o => o.Title.Equals(title) && o.Properties.Keys.All(key =>   properties.ContainsKey(key) && 
+                                                                                                                        properties[key].Equals(o.Properties[key]))));
         }
     }
 }

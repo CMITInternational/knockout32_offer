@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Api.Builders;
 using Api.Models;
 using Common.Models;
 using Common.Repositories;
@@ -25,7 +26,11 @@ namespace Api.Controllers
         {
             var offers = _offerRepository.GetOffers(accountNumber);
 
-            return offers.Select(offer => _offerViewModelBuilder.Build(offer)).ToList();
+            return offers.Select(delegate(Offer offer)
+            {
+                OfferViewModel offerViewModel = _offerViewModelBuilder.Build(offer);
+                return offerViewModel;
+            }).ToList();
         }
     }
 }
