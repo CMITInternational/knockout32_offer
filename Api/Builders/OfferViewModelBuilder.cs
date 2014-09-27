@@ -9,15 +9,23 @@ namespace Api.Builders
     {
         public OfferViewModel Build(Offer offer)
         {
-            var properties = new Dictionary<string, string>();
-
-            properties.Add("Bet Type",offer.Campaign.BetTrigger.Type.ToString());
+            var properties = new Dictionary<string, string>
+            {
+                {"Bet Type", offer.Campaign.BetTrigger.Type.ToString()},
+                {"Amount", String.Format("{0:C}", offer.Campaign.BetTrigger.Amount)}
+            };
 
             switch (offer.Campaign.Quantifier)
             {
                 case BetQuantifierType.Winning:
                 {
                     properties.Add("Description","Winning Bet");
+                    break;
+                }
+                case BetQuantifierType.Makeup:
+                {
+                    properties.Add("Description","Any Bet");
+                    properties.Add("Expires","Very Soon");
                     break;
                 }
             }
