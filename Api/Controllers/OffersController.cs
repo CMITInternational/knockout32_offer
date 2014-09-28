@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web.Http;
 using Api.Builders;
 using Api.Models;
@@ -11,6 +12,7 @@ using Common.Repositories;
 
 namespace Api.Controllers
 {
+    [Route("api/offers")]
     public class OffersController : ApiController
     {
         private readonly IOfferRepository _offerRepository;
@@ -22,6 +24,18 @@ namespace Api.Controllers
             _offerViewModelBuilder = offerViewModelBuilder;
         }
 
+        [Route("api/offers")]
+        [HttpGet]
+        public List<string> Get()
+        {
+            return new List<string>
+            {
+                "1234"
+            };
+        }
+        
+        [Route("api/offers/{accountNumber}")]
+        [HttpGet]
         public List<OfferViewModel> GetOffers(string accountNumber)
         {
             var offers = _offerRepository.GetOffers(accountNumber);

@@ -5,8 +5,10 @@ using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
+using Api.Builders;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Common.Repositories;
 
 namespace Api
 {
@@ -19,6 +21,9 @@ namespace Api
 
             // Register the Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            builder.Register(c => new OfferRepository()).As<IOfferRepository>().InstancePerDependency();
+            builder.Register(c => new OfferViewModelBuilder()).As<IOfferViewModelBuilder>().InstancePerDependency();
 
             // Build the container.
             var container = builder.Build();
