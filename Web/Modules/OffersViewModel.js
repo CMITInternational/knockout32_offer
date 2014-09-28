@@ -1,14 +1,15 @@
 ﻿(function () {
-    define(["knockout", "/Modules/Offer.js", "/Services/offers.js"], function (ko, Offer, offers) {
+    define(["knockout", "/Modules/Offer.js", "/Services/offers.js","underscore"], function (ko, Offer, offers) {
         return function () {
             var self = this;
 
-            self.offers = [];
+            self.offers = ko.observableArray([]);
 
+            offers.setUrl('http://localhost:58176/api/Offers');
             offers.offersForAccount("1234")
-                .sucess(function(data) {
+                .success(function(data) {
                     data.forEach(function(offerData) {
-                        self.offers.push(new Offer(offerData.Title, offerData.Properties));
+                        self.offers.push(new Offer(offerData.Title, _.pairs(offerData.Properties)));
                     });
                 })
                 .error(function(error) {

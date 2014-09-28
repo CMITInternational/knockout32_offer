@@ -1,9 +1,10 @@
 ﻿require.config({
     paths: {
-        "jquery": "scripts/jquery-1.9.0",
+        "jquery": "scripts/jquery-2.1.1",
         "bootstrap": "scripts/bootstrap",
         "knockout": "Scripts/knockout-3.2.0",
         "text": "Scripts/text",
+        "underscore": "Scripts/underscore",
     },
     shim: {
         'jquery': {
@@ -12,7 +13,7 @@
         'bootstrap': {
             deps: ['jquery'],
             exports: 'jQuery'
-        }
+        },
     }
 });
 

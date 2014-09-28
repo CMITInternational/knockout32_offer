@@ -3,8 +3,8 @@
         return function (title, properties) {
             var self = this;
 
-            self.title = title;
-            self.properties = properties;
+            self.title = ko.observable(title);
+            self.properties = ko.observableArray(properties);
         };
     });
 })();

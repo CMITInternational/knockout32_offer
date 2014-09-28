@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices.ComTypes;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Api.Builders;
 using Api.Models;
 using Common.Models;
