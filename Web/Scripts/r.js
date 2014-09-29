@@ -1872,7 +1872,10 @@ var requirejs, require, define, xpcUtil;
                     //Join the path parts together, then figure out if baseUrl is needed.
                     url = syms.join('/');
                     url += (ext || (/^data\:|\?/.test(url) || skipExt ? '' : '.js'));
-                    url = (url.charAt(0) === '/' || url.match(/^[\w\+\.\-]+:/) ? '' : config.baseUrl) + url;
+                    var useBaseUrl = url.charAt(0) === '/' || url.match(/^[\w\+\.\-]+:/);
+                    console.log("useBaseUrl : " + useBaseUrl);
+                    url = (useBaseUrl ? '' : config.baseUrl) + url;
+                    console.log("url : " + url);
                 }
 
                 return config.urlArgs ? url +

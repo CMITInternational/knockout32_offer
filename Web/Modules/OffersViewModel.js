@@ -1,5 +1,5 @@
 ﻿(function () {
-    define(["knockout", "/Modules/Offer.js", "/Services/offers.js","underscore"], function (ko, Offer, offers) {
+    define(["knockout", "Modules/Offer", "Services/offers","underscore"], function (ko, Offer, offers) {
         return function () {
             var self = this;
 

@@ -1,5 +1,5 @@
 ﻿(function () {
-    define(["/Modules/Offer.js", "knockout"], function (Offer, ko) {
+    define(["Modules/Offer", "knockout"], function (Offer, ko) {
         return {
             createViewmodel: function (params, componentInfo) {
                 if (params instanceof Offer) {

@@ -1,5 +1,5 @@
 ﻿(function () {
-    define(['/Services/http.js'], function (http) {
+    define(['Services/http'], function (http) {
         var _url = "/api/Offers";
 
         return {
