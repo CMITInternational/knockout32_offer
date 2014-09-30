@@ -10,13 +10,15 @@ lockfile.lock('test.lock', { retries: 200, retryWait: 20 }, function (err) {
     if (!err) {
         console.log('lock obtained for http.spec');
 
-        var req = require.config({
+        require.config({
             baseUrl: '../',
             paths: {
                 'jquery': 'Specs/jquery-mock',
                 'Services/http': 'Services/http'
             }
         });
+
+        console.log('require.undef -> [' + require.undef + ']');
 
         require(['Services/http', 'jquery'], function (http, jQuery) {
             describe('http', function() {
