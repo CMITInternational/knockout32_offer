@@ -8,7 +8,10 @@ var lockfile = require('lockfile');
 
 lockfile.lock('test.lock', {retries:200,retryWait:20}, function(err) {
     if (!err) {
-        console.log('lock obtained for offers.spec');
+        //console.log('lock obtained for offers.spec');
+
+        require.undef('Services/http');
+        require.undef('Services/offers');
 
         require.config({
             baseUrl: '../',

@@ -8,7 +8,10 @@ var lockfile = require('lockfile');
 
 lockfile.lock('test.lock', { retries: 200, retryWait: 20 }, function (err) {
     if (!err) {
-        console.log('lock obtained for offer.spec');
+        //console.log('lock obtained for offer.spec');
+
+        require.undef('knockout');
+        require.undef('Modules/Offer');
 
         require.config({
             baseUrl: '../',

@@ -8,7 +8,10 @@ var lockfile = require('lockfile');
 
 lockfile.lock('test.lock', { retries: 200, retryWait: 20 }, function (err) {
     if (!err) {
-        console.log('lock obtained for http.spec');
+        //console.log('lock obtained for http.spec');
+
+        require.undef('jquery');
+        require.undef('Services/http');
 
         require.config({
             baseUrl: '../',
@@ -17,8 +20,6 @@ lockfile.lock('test.lock', { retries: 200, retryWait: 20 }, function (err) {
                 'Services/http': 'Services/http'
             }
         });
-
-        console.log('require.undef -> [' + require.undef + ']');
 
         require(['Services/http', 'jquery'], function (http, jQuery) {
             describe('http', function() {
